@@ -13,11 +13,13 @@ export default function entraceNewVehicle (
 ): IVehicleForm {
   switch (action.type) {
     case types.REGISTER_NEW_VEHICLE_REQUEST:
-      return {
+      console.log('reducer request')  
+    return {
         ...state,
         isLoading: true,
       };
     case types.REGISTER_NEW_VEHICLE_SUCCESS:
+      console.log('reducer passou')
       return {
         ...state,
         isLoading: false

@@ -1,6 +1,9 @@
 import React, {FC, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { StoreState } from '../../store/createStore'
+import { entraceNewVehicleRequest} from '../../store/modules/entrace-new-vehicle/actions'
+
 import InputMask from 'react-input-mask'
 
 interface Props {
@@ -11,12 +14,19 @@ interface Props {
 }
 
 const ParkingForm: FC<Props> = (props) =>{
-    //const dispatch = useDispatch();
-    const [Plaque, setPlaque] = useState('AAA-000')
+    const dispatch = useDispatch();
+    const [Plaque, setPlaque] = useState('AAA-0000')
+
+    const {isLoading, error } = useSelector((state: StoreState) => state.entraceNewVehicle);
+  
 
     function confirmEntrace(){
         console.log('entrace')
-        // dispatch(Plaque)
+        dispatch(
+            entraceNewVehicleRequest({
+                plaque: Plaque
+            })
+        )
     }
 
     function confirmPayment(){
@@ -37,9 +47,10 @@ const ParkingForm: FC<Props> = (props) =>{
 
     return (
         <>
+            {isLoading ? 'carregando...' : ''}
             <form id='formParking' onSubmit={(event) => {event.preventDefault()}}>
                 <label>Número da placa:</label>
-                <InputMask type='text' value={Plaque} onChange={(prevState) => { setPlaque(prevState.target.value) }} mask='aaa-999' />
+                <InputMask type='text' value={Plaque} onChange={(prevState) => { setPlaque(prevState.target.value) }} mask='aaa-9999' />
 
                 {props.entrace ?  <button onClick={() => confirmEntrace()}>Confirmar Entrada</button> : ''}
                 {props.payment ? <button onClick={() => confirmPayment()}>Pagamento</button> : ''}
