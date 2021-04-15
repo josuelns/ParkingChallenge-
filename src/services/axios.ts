@@ -7,3 +7,10 @@ export default axios.create({
     Authorization: Cookies.get('parking-token'),
   },
 });
+
+export const axiosConfig = {
+  headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+  }
+}

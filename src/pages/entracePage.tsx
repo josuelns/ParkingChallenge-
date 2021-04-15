@@ -10,7 +10,7 @@ const entracePage: FC = () => {
         <>
             <Header />
             <section>
-                <TabNavBar />
+                <TabNavBar  entrance/>
             </section>
             <section>
                 <FormParking entrace />

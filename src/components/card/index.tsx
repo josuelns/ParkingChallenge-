@@ -1,6 +1,6 @@
 import React, {FC } from 'react';
 
-const Card: FC = () =>{
+const Input: FC = () =>{
     return (
         <>
 
@@ -8,4 +8,4 @@ const Card: FC = () =>{
     )
 }
 
-export default Card
+export default Input

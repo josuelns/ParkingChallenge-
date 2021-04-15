@@ -7,11 +7,13 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import EntrancePage from './pages/entracePage';
 import ExitPage from './pages/exitPage';
 
+import { GlobalStyle} from '../src/assets/utils/styles/global-style'
 
 
 const App: FC = () => {
   return (
     <Provider store={store}>
+      <GlobalStyle />
       <Router>
         <Switch>
             <Route exact path="/entrace" component={EntrancePage} />

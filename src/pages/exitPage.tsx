@@ -10,10 +10,10 @@ const ExitPage: FC = () => {
         <>
             <Header />
             <section>
-                <TabNavBar />
+                <TabNavBar exit />
             </section>
             <section>
-                <FormParking />
+                <FormParking payment exit history/>
             </section>
             <section>
                 <Modal />

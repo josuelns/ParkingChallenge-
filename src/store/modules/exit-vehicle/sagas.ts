@@ -3,27 +3,27 @@ import { get } from 'lodash';
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import * as types from './types';
-import axios, { axiosConfig} from '../../../services/axios';
+import axios from '../../../services/axios';
 import Cookies from 'js-cookie';
 
 
-export function* registerNewVehicle ({ payload }: ActionType<typeof actions.entraceNewVehicleRequest>) {
+export function* outVehicle ({ payload }: ActionType<typeof actions.exitVehicleRequest>) {
   try {
-    const response = yield call(axios.post, '/parking', payload,axiosConfig)
+    const response = yield call(axios.post, `/parking/${payload}/out`)
 
-    yield put(actions.entraceNewVehicleSuccess())
+    yield put(actions.exitVehicleSuccess())
     
-    console.log('@entraceNewVehicle/payload:: ', payload)
+    console.log('@exitVehicle/payload:: ', payload)
   } catch (err) {
     const error = get(err, 'response.data.error', [])
     const statusCode = get(err, 'response.data.statusCode', 0)
     const messages = get(err, 'response.data.message', [])
     console.log(`Erro[${statusCode}]:: ${error} -`, messages)
 
-    yield put(actions.entraceNewVehicleFailure())
+    yield put(actions.exitVehicleFailure())
   }
 }
 
 export default all([
-  takeLatest(types.REGISTER_NEW_VEHICLE_REQUEST, registerNewVehicle),
+  takeLatest(types.EXIT_VEHICLE_REQUEST, outVehicle),
 ])

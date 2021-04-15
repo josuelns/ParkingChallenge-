@@ -2,13 +2,13 @@ import { action } from 'typesafe-actions';
 import * as types from './types';
 
 export function entraceNewVehicleRequest ({
-  plaque
+  plate
 }: {
-  plaque: string;
+  plate: string;
 }) {
   console.log('request')
   return action(types.REGISTER_NEW_VEHICLE_REQUEST, {
-    plaque
+    plate
   });
 }
 

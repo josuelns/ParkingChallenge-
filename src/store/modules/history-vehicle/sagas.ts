@@ -7,23 +7,23 @@ import axios, { axiosConfig} from '../../../services/axios';
 import Cookies from 'js-cookie';
 
 
-export function* registerNewVehicle ({ payload }: ActionType<typeof actions.entraceNewVehicleRequest>) {
+export function* historyVehicle ({ payload }: ActionType<typeof actions.historyVehicleRequest>) {
   try {
-    const response = yield call(axios.post, '/parking', payload,axiosConfig)
+    const response = yield call(axios.get, `/parking/${payload}`)
 
-    yield put(actions.entraceNewVehicleSuccess())
+    yield put(actions.historyVehicleSuccess())
     
-    console.log('@entraceNewVehicle/payload:: ', payload)
+    console.log('@historyVehicle/payload:: ', payload)
   } catch (err) {
     const error = get(err, 'response.data.error', [])
     const statusCode = get(err, 'response.data.statusCode', 0)
     const messages = get(err, 'response.data.message', [])
     console.log(`Erro[${statusCode}]:: ${error} -`, messages)
 
-    yield put(actions.entraceNewVehicleFailure())
+    yield put(actions.historyVehicleFailure())
   }
 }
 
 export default all([
-  takeLatest(types.REGISTER_NEW_VEHICLE_REQUEST, registerNewVehicle),
+  takeLatest(types.HISTORY_VEHICLE_REQUEST, historyVehicle),
 ])
