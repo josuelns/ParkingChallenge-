@@ -12,6 +12,8 @@ import InputMask from 'react-input-mask'
 
 import {StyledForm} from '../../assets/utils//styles/form'
 
+import {Link} from 'react-router-dom'
+
 interface Props {
     entrace?: boolean,
     payment?: boolean,
@@ -54,14 +56,14 @@ const ParkingForm: FC<Props> = (props) =>{
         )
     }
 
-    function showHistory(){
-        console.log('history')
-        dispatch(
-            historyVehicleRequest({
-                plate: Plate
-            })
-        )
-    }
+    // function showHistory(){
+    //     console.log('history')
+    //     dispatch(
+    //         historyVehicleRequest({
+    //             plate: Plate
+    //         })
+    //     )
+    // }
 
     return (
         <>
@@ -73,7 +75,8 @@ const ParkingForm: FC<Props> = (props) =>{
                 {props.entrace ?  <button onClick={() => confirmEntrace()}>Confirmar Entrada</button> : ''}
                 {props.payment ? <button className='bg_gray' onClick={() => confirmPayment()}>Pagamento</button> : ''}
                 {props.exit ? <button className='bg_white' onClick={() => setExit()}>Saída</button>  : ''}
-                {props.history ? <a onClick={() => showHistory()}>Ver Histórico</a> : ''}
+
+                {props.history ? <Link to={`/history/${Plate}`}>Ver Histórico</Link> : ''}
             </StyledForm>
         </>
     )

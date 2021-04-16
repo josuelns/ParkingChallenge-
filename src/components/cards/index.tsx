@@ -1,20 +1,46 @@
 import React, {FC } from 'react';
 
+import Card from '../card'
+
 type VehicleParking = {
     time: string,
     pay: boolean
 }
 
 interface Props {
-    data: VehicleParking[]
+    id: string
 }
 
-const Card: FC<Props> = () =>{
+const Cards: FC<Props> = () =>{
     return (
         <>
-
+            <section>  
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+            </section>
         </>
     )
 }
 
-export default Card
+export default Cards
